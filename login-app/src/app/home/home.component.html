@@ -1,0 +1,19 @@
+<div class="container">
+    <div class="card mt-5">
+        <div class="card-body">
+            <h5 class="card-title text-center">Home Page</h5>
+            <hr />
+            <p>Welcome to Home Page</p>
+            <!-- <button type="button" class="btn btn-primary" (click)="logout()">Logout</button> -->
+            <div *ngIf="!btnSpinner; else spinnerBtn">
+                <button type="button" class="btn btn-primary" (click)="logout()">Logout</button>
+            </div>
+            <ng-template #spinnerBtn>
+                <button class="btn btn-primary" type="button" disabled>
+                    <span class="spinner-border spinner-border-sm" aria-hidden="true"></span>
+                    <span role="status"> Logging out...</span>
+                </button>
+            </ng-template>
+        </div>
+    </div>
+</div>

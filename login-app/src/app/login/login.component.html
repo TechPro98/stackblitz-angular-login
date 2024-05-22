@@ -1,0 +1,47 @@
+<div class="container">
+    <div class="card mt-5">
+        <div class="card-body">
+            <h5 class="card-title text-center">Login Page</h5>
+            <hr />
+            <div class="alert alert-danger" role="alert" *ngIf="isInvalid">
+                Incorrect username or password!
+            </div>
+            <form [formGroup]="userForm" (ngSubmit)="onLogin()">
+
+                <div class="form-group mb-3">
+                    <label class="form-label">Username:</label>
+                    <input type="text" 
+                        class="form-control"
+                        [ngClass]="{'is-invalid': userForm.controls.username.invalid && userForm.controls.username.touched}"
+                        formControlName="username" 
+                        placeholder="Enter username">
+                    <div class="invalid-feedback" *ngIf="userForm.controls.username.invalid && userForm.controls.username.touched">
+                        Username is required.
+                    </div>
+                </div>
+
+                <div class="form-group mb-3">
+                    <label class="form-label">Password:</label>
+                    <input type="password" 
+                        class="form-control"
+                        [ngClass]="{'is-invalid': userForm.controls.password.invalid && userForm.controls.password.touched}"
+                        formControlName="password" 
+                        placeholder="Enter password">
+                    <div class="invalid-feedback" *ngIf="userForm.controls.password.invalid && userForm.controls.password.touched">
+                        Password is required.
+                    </div>
+                </div>
+
+                <div *ngIf="btnSpinner; else withoutSpinnerBtn">
+                    <button class="btn btn-primary" type="button" disabled>
+                        <span class="spinner-border spinner-border-sm" aria-hidden="true"></span>
+                        <span role="status"> Logging in...</span>
+                    </button>
+                </div>
+                <ng-template #withoutSpinnerBtn>
+                    <button type="submit" class="btn btn-primary">Login</button>
+                </ng-template>
+            </form>
+        </div>
+    </div>
+</div>
